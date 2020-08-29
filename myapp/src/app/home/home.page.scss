@@ -1,0 +1,216 @@
+@import '../../mixins';
+.header {
+  background-image: linear-gradient(rgba(74, 92, 78,.92), rgba(74, 92, 78,.90)),
+  url(../../assets/photo1.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr min-content 8rem 1fr;
+  grid-template-columns: max-content;
+  grid-row-gap: 2rem;
+  padding: 8rem;
+  justify-content: center;
+  &__seenon-text {
+    display: grid;
+    grid-template-columns: 1fr max-content 3fr;
+    align-items: center;
+    grid-column-gap: 1.5rem;
+    font-size: 1.6rem;
+    color: #d4d6d5;
+    &::before,
+    &::after {
+      content: "";
+      height: 1px;
+      display: block;
+      background-color: currentColor;
+    }
+  }
+  &__seenon-logos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3rem;
+    justify-items: center;
+    img {
+      height: 4.5rem;
+      filter: brightness(40%);
+    }
+  }
+  &__button {
+    align-self: start;
+    justify-self: center;
+  }
+}
+.cards {
+  display: grid;
+  padding: 2rem;
+  grid-template-columns: repeat(auto-fit,minmax(30rem, 1fr));
+  grid-gap: 2rem;
+  justify-items: center;
+  background-color: #cbd1cc;
+}
+.card {
+  justify-self: stretch;
+  perspective: 250rem;
+  -moz-perspective: 250rem;
+  position: relative;
+  min-height: 70vh; 
+  &__side {
+    min-height: 70vh;
+    color: black;
+    font-size: 2rem;
+    transition: all .8s ease;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 5px;
+    box-shadow: 0 1.5rem 4rem rgba(0,0,0,.15);
+    &-front {
+      background-color: #fff;
+    }
+    &-back {
+      transform: rotateY(180deg);
+      button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      &-1 {
+        background: linear-gradient(to right bottom,#85adff,#0364ff);
+      }
+      &-2 {
+        background: linear-gradient(to right bottom,#85ff93,#00a112);
+      }
+      &-3 {
+        background: linear-gradient(to right bottom,#fce25d,#dbb700);
+      }
+    }
+  }
+  &:hover &__side-front {
+    transform: rotateY(-180deg);
+  }
+  &:hover &__side-back {
+    transform: rotateY(0);
+  }
+  &__header {
+    height: 25rem;
+    -webkit-clip-path: polygon(0 0, 50% 10%, 100% 0, 100% 55%, 50% 70%, 0 55%);
+    clip-path: polygon(0 0, 50% 10%, 100% 0, 100% 55%, 50% 70%, 0 55%);
+    &-1 {
+      background: linear-gradient(to right bottom,#85adff,#0364ff);
+    }
+    &-2 {
+      background: linear-gradient(to right bottom,#85ff93,#00a112);
+    }
+    &-3 {
+      background: linear-gradient(to right bottom,#fce25d,#dbb700);
+    }
+  }
+  &__title {
+    position: absolute;
+    top: 8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.3rem;
+    color: white;
+  }
+  &__details {
+    margin-top: -2.5rem;
+    ul {
+      list-style: none;
+      padding: 0;
+      // padding-bottom: 2.5rem;
+      li {
+        font-size: 1.5rem;
+        font-weight: 300;
+        padding: 1.2rem;
+        text-align: center;
+        &:not(:last-child) {
+          border-bottom: 1px solid #c9c9c9;
+        }
+      }
+    }
+  }
+}
+
+.stories {
+  background: radial-gradient(#b5b3aa, #575652);
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2rem;
+  justify-items: center;
+  h2 {
+    align-self: start;
+  }
+}
+.story {
+  width: 75%;
+  margin: 4rem auto;
+  padding: 6rem;
+  box-shadow: 0 3rem 6rem rgba($color: hsl(22, 98%, 51%), $alpha: .2);
+  background-color: white;
+  border-radius: 3px;
+  transform: skewX(-12deg);
+  @include respond(tab-port) { // 1rem = 8px
+    width: 90%
+  }
+  &__shape {
+    float: left;
+    height: 15rem;
+    width: 15rem;
+    -webkit-shape-outside: ellipse(50% 45% at 50% 50%);
+    shape-outside: ellipse(50% 45% at 50% 50%);
+    -webkit-clip-path: ellipse(50% 45% at 50% 50%);
+    clip-path: ellipse(50% 45% at 50% 50%);
+    transform: skewX(12deg);
+    @include respond(tab-port) { // 1rem = 8px
+      float: none;
+    }
+    &-1 {
+      background: url(../../assets/people1.jpg);
+      background-size: cover;
+      background-position: center;
+    }
+    &-2 {
+      background: url(../../assets/people2.jpg);
+      background-size: cover;
+      background-position: center;
+    }
+  }
+  &__text {
+    transform: skewX(12deg);
+    h3 {
+      color: #fc7b03;
+    }
+    p {
+      font-size: 1.6rem;
+    }
+  }
+  &__caption {
+    transform: skewX(12deg);
+    position: relative;
+    padding-top: 1rem;
+    &-container {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+    &-author {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #686869;
+    }
+    &-designation {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #686869;
+    }
+  }
+}
+ 

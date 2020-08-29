@@ -1,0 +1,21 @@
+.navbar {
+    padding: 1rem;
+    position: relative;
+    &__img {
+        max-height: 45px;
+    }
+    &__icon {
+        position: absolute;
+        right: 0;
+        top:0;
+        height: 6.4rem;
+        width: 6.4rem;
+        color: white;
+        cursor: pointer;
+        transition: all .4s;
+    }
+    &__icon:hover {
+        color: aqua;
+        transform: translateY(.5rem);
+    }
+}

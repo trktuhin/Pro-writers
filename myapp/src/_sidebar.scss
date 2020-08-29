@@ -1,0 +1,58 @@
+@import "./mixins";
+.side-nav {
+    font-size: 1.4rem;
+    list-style: none;
+    margin-top: 3rem;
+    padding: 0;
+    &__item {
+        position: relative;
+        // padding-left: 3.5rem;
+        &:not(:last-child) {
+            margin-bottom: .5rem;
+        }
+    }
+    &__item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 3px;
+        background-color: #e30538;
+        transform: scaleY(0);
+        transition: transform .2s, width .5s cubic-bezier(1,0,0,1) .2s;
+    }
+    &__item:hover::before,
+    &__item-active::before {
+        transform: scaleY(1);
+        width: 100%;
+    }
+    &__link:visited,
+    &__link:link {
+        text-transform: uppercase;
+        text-decoration: none;
+        display: block;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding: 1.5rem 3rem;
+        position: relative;
+        z-index: 10;
+        @include respond(tab-land) { // 1rem = 9px
+            padding: 1.3 0;
+        }
+    }
+    &__icon {
+        width: 1.7rem;
+        height: 1.7rem;
+        margin-right: 2rem;
+        fill: currentColor;
+        @include respond(tab-land) { // 1rem = 9px
+            width: 1.4rem;
+            height: 1.4rem;
+            margin-right: .5rem;
+        }
+
+    }
+    
+}

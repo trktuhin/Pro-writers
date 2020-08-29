@@ -1,0 +1,29 @@
+.contact {
+    &__container {
+        background-color: #6c7371;
+        min-height: 100vh;
+    }
+    &__info {
+        padding-top: 1rem;
+        ul {
+            list-style: none;
+            color: #4bbde3;
+            margin-top: 0;
+            li {
+                font-size: 1.6rem;
+                padding: 1rem .5rem;
+                font-weight: 700;
+            }
+        }
+    }
+    &__img {
+        min-height: 80vh;
+        background: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, .2)),
+        url(../../assets/hello.jpg);
+        background-position: center;
+        background-size: cover;
+        clip-path: polygon(0 0%, 100% 0%, 100% 86%, 72% 87%, 72% 100%, 60% 88%, 0 88%);
+        margin: 0 10px;
+        border-radius: 5px;
+    }
+}

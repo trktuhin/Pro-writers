@@ -1,0 +1,37 @@
+<div class="modal-content">
+  <ion-icon (click)="onCancel()" class="close-button" name="close"></ion-icon>
+  <div class="menu-conatiner">
+    <ul class="side-nav">
+      <li class="side-nav__item" (click)="onCancel()" routerLinkActive="side-nav__item-active">
+        <a routerLink="home" class="side-nav__link">
+          <ion-icon class="side-nav__icon" name="home"></ion-icon>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="side-nav__item" (click)="onCancel()"  routerLinkActive="side-nav__item-active">
+        <a routerLink="about"  class="side-nav__link">
+          <ion-icon class="side-nav__icon" name="information-circle"></ion-icon>
+          <span>About</span>
+        </a>
+      </li>
+      <li class="side-nav__item">
+        <a href="#" class="side-nav__link">
+          <ion-icon class="side-nav__icon" name="snow"></ion-icon>
+          <span>Services</span>
+        </a>
+      </li>
+      <li class="side-nav__item" (click)="onCancel()"  routerLinkActive="side-nav__item-active">
+        <a routerLink="order" class="side-nav__link">
+          <ion-icon class="side-nav__icon" name="arrow-forward-circle"></ion-icon>
+          <span>Order</span>
+        </a>
+      </li>
+      <li class="side-nav__item" (click)="onCancel()"  routerLinkActive="side-nav__item-active">
+        <a routerLink="contact"  class="side-nav__link">
+          <ion-icon class="side-nav__icon" name="mail"></ion-icon>
+          <span>Contact</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

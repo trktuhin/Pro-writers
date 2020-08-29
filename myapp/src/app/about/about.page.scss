@@ -1,0 +1,49 @@
+@import '../../mixins';
+.about {
+    background: linear-gradient(rgba(74, 92, 78,.92), rgba(74, 92, 78,.80)),
+    url(../../assets/library.jpg);
+    min-height: 90vh;
+    background-size: cover;
+    background-position: center;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 8rem;
+    grid-row-gap: 2rem;
+    align-items: start;
+    margin-bottom: 3rem;
+
+    &__details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 3rem;
+        @include respond(tab-port) { // 1rem = 8px
+            grid-template-columns: 1fr;
+          }
+        &-text {
+            p {
+                font-size: 1.8rem;
+                padding: 3rem;
+                letter-spacing: 2px;
+                // text-align: justify;
+            }
+        }
+        &-img {
+            background: url(../../assets/writer.jpg);
+            background-size: cover;
+            background-position: center;
+            -webkit-clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+            // min-height: 400px;
+        }
+    }
+    &__end {
+        padding: 8rem;
+        p {
+            font-size: 1.6rem;
+            text-align: justify;
+        }
+    }
+}

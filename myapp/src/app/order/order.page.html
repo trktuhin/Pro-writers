@@ -1,0 +1,93 @@
+<ion-content>
+  <div>
+    <ion-grid [formGroup]="orderForm">
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-label position="floating" color="medium">Your Name</ion-label>
+            <ion-input type="text" formControlName="clientName"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-label position="floating" color="medium">Your Email</ion-label>
+            <ion-input type="email" formControlName="clientEmail"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-label position="floating" color="medium">Title</ion-label>
+            <ion-input type="text" formControlName="bookTitle"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-label position="floating" color="medium">Sub Title</ion-label>
+            <ion-input type="text" formControlName="subTitle"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-label position="floating" color="medium">Author Name</ion-label>
+            <ion-input type="text" formControlName="authorName"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-label position="floating" color="medium">Project Description</ion-label>
+            <ion-textarea type="text" formControlName="projectDescription"></ion-textarea>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-label position="floating" color="medium">No of word
+              <span> ({{orderForm.get('noOfWord').value}})</span>
+            </ion-label>
+            <ion-range min="10000" max="50000" step="1000" formControlName="noOfWord"
+            color="secondary" pin="true" snaps="true">
+            </ion-range>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-checkbox formControlName="customizedCopyrightPage" color="secondary" checked slot="start"></ion-checkbox>
+            <ion-label>Customized Copyright Page ($10)</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-checkbox formControlName="professionalBookDescription" color="dark" checked slot="start"></ion-checkbox>
+            <ion-label>Professional Book Description ($0)</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-checkbox formControlName="plagiarismReport" color="danger" checked slot="start"></ion-checkbox>
+            <ion-label>Plagiarism Report ($15)</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-checkbox formControlName="wordFormatting" color="tertiary" checked slot="start"></ion-checkbox>
+            <ion-label>Word Formatting ($0)</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-label>Total price: ${{getTotalPrice()}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-center>
+        <ion-col class="ion-text-center">
+          <ion-button [disabled]="!orderForm.valid" (click)="addToCart()" color="primary">Add to Cart</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

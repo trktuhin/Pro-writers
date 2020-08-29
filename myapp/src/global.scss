@@ -1,0 +1,144 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import "./mixins";
+@import "./sidebar";
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+.animate-moveInBottom {
+    animation: moveInBottom .5s cubic-bezier(.07,.42,.64,.75) .75s;
+    animation-fill-mode: backwards;
+}
+
+.modal-nav {
+    --background: transparent !important;
+}
+
+html {
+    font-size: 62.5%; // 1 rem = 10px
+    @include respond(tab-land) { // 1rem = 9px
+        font-size: 56.25%;
+    }
+    @include respond(tab-port) { // 1rem = 8px
+        font-size: 50%;
+    }
+    @include respond(big-desktop) {
+        font-size: 75%; // 1rem=12px
+    }
+}
+
+%heading {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    margin-top: 0;
+    color: white;
+}
+.cool__btn {
+    text-transform: uppercase;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 5px;
+    transition: all .4s;
+    outline: none;
+    position: relative;
+    font-weight: 700;
+    &-secondary {
+        background-color: #cf8d00;
+        color: #c2c1c0;
+    }
+    &-primary {
+        background-color: white;
+        color: black;
+    }
+}
+.cool__btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+}
+.cool__btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+
+ }
+ .cool__btn::after {
+     content: "";
+     display: inline-block;
+     height: 100%;
+     width: 100%;
+     border-radius: 5px;
+     position: absolute;
+     left: 0;
+     top: 0;
+     z-index: -1;
+     transition: all .4s;
+ }
+ .cool__btn-secondary::after {
+     background-color: #cf8d00;
+ }
+ .cool__btn-primary::after {
+    background-color: white;
+}
+ .cool__btn:hover::after {
+     transform: scaleX(1.4) scaleY(1.6);
+     opacity: 0;
+ }
+
+.heading-1 {
+    @extend %heading;
+    font-size: 4.5rem;
+    line-height: 1;
+}
+.heading-2 {
+    @extend %heading;
+    font-size: 4rem;
+    line-height: 1;
+}
+.heading-3 {
+    @extend %heading;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+}
+.animated-heading {
+    transition: all .2s;
+}
+.animated-heading:hover {
+    transform: skewX(15deg) scale(1.1);
+    color: #fc7b03;
+}
+.color-secondary {
+    color: #e7b205;
+}
+.color-grey-ligt-1{
+    color: #c2c1c0;
+}
+.color-grey-dark-1{
+    color: #8e918f;
+}
+
