@@ -8,5 +8,6 @@ namespace Prowriters.API.Data
         public DataContext(DbContextOptions<DataContext> options): base(options){}
 
         public DbSet<Coupon> Coupons { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

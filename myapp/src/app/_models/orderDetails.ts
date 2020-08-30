@@ -1,4 +1,5 @@
 export interface OrderDetails {
+    id?: number;
     bookTitle: string;
     subTitle: string;
     authorName: string;
@@ -10,4 +11,5 @@ export interface OrderDetails {
     professionalBookDescription: boolean;
     plagiarismReport: boolean;
     wordFormatting: boolean;
+    totalDiscount?: number;
 }
