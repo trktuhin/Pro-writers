@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -21,10 +23,21 @@ namespace Prowriters.API.Controllers
             _repo = repo;
 
         }
+        [HttpPost("AddOrder")]
         public async Task<IActionResult> AddOrder(OrderDto dto)
         {
             var orderToAdd = _mapper.Map<Order>(dto);
+            orderToAdd.OrderDate = DateTime.Now;
             _repo.Add(orderToAdd);
+            await _uow.Complete();
+            return Ok(orderToAdd.Id);
+        }
+
+        [HttpGet("PaymentConfirmation/{id}")]
+        public async Task<IActionResult> ConfirmPayment(int id)
+        {
+            var orderInDb = await _repo.GetOrderById(id);
+            orderInDb.IsPaymentReceived = true;
             await _uow.Complete();
             return Ok();
         }

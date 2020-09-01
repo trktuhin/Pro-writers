@@ -1,3 +1,5 @@
+using System;
+
 namespace Prowriters.API.Models
 {
     public class Order
@@ -14,6 +16,8 @@ namespace Prowriters.API.Models
         public bool ProfessionalBookDescription { get; set; }
         public bool PlagiarismReport { get; set; }
         public bool WordFormatting { get; set; }
+        public bool IsPaymentReceived { get; set; }
         public float TotalDiscount { get; set; }
+        public DateTime OrderDate { get; set; }
     }
 }

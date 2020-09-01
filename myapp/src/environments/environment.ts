@@ -8,7 +8,9 @@ export const environment = {
     stripe: {
       publishableKey: 'pk_test_51HGek9LeMRingsIQtQP7MBGISaea70HKtCyKfS4q2lv911xDJhlzquuYsLAmF20mldaDa3trs1avNtH5p2zTSylX00tnjfmADX'
     }
-  }
+  },
+  baseDomain: 'http://localhost:4200/',
+  baseServer: 'http://localhost:5000/api/'
 };
 
 /*

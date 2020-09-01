@@ -9,6 +9,7 @@ namespace Prowriters.API.Helpers
         public AutoMapperProfile()
         {
             CreateMap<OrderDto, Order>();
+            CreateMap<MessageDto, Message>();
         }
     }
 }

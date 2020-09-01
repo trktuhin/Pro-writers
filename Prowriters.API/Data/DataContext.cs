@@ -9,5 +9,6 @@ namespace Prowriters.API.Data
 
         public DbSet<Coupon> Coupons { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Message> Messages { get; set; }
     }
 }

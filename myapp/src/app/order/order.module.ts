@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { OrderPageRoutingModule } from './order-routing.module';
 import { OrderPage } from './order.page';
+import { CreditCardPaymentComponent } from './credit-card-payment/credit-card-payment.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { OrderPage } from './order.page';
     IonicModule,
     OrderPageRoutingModule
   ],
-  declarations: [OrderPage]
+  declarations: [OrderPage, CreditCardPaymentComponent]
 })
 export class OrderPageModule {}

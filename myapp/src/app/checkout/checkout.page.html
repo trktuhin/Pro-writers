@@ -63,4 +63,11 @@
       <ion-label>Sub Total: ${{getSubTotalPrice()}}</ion-label>
     </ion-item>
   </ion-card>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col class="ion-text-center">
+        <ion-button (click)="checkout()" class="ion-margin-bottom" color="primary">Proceed Checkout</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

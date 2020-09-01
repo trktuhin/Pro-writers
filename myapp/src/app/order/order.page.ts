@@ -26,10 +26,10 @@ export class OrderPage implements OnInit {
       noOfWord: [10000, [Validators.required]],
       clientName: ['', [Validators.required]],
       clientEmail: ['', [Validators.required, Validators.email]],
-      customizedCopyrightPage: [true],
-      professionalBookDescription: [true],
-      plagiarismReport: [true],
-      wordFormatting: [true]
+      customizedCopyrightPage: [false],
+      professionalBookDescription: [false],
+      plagiarismReport: [false],
+      wordFormatting: [false]
     });
   }
 
