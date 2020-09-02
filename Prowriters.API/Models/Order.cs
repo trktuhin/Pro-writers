@@ -17,6 +17,8 @@ namespace Prowriters.API.Models
         public bool PlagiarismReport { get; set; }
         public bool WordFormatting { get; set; }
         public bool IsPaymentReceived { get; set; }
+        public bool IsDeleted { get; set; }
+        public bool IsCompleted { get; set; }
         public float TotalDiscount { get; set; }
         public DateTime OrderDate { get; set; }
     }

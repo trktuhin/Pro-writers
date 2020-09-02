@@ -10,6 +10,9 @@ namespace Prowriters.API.Data
          void AddMultiple<T>(IEnumerable<T> entities) where T:class;
          void Delete<T>(T entity) where T:class;
          void RemoveMultiple<T>(IEnumerable<T> entities) where T:class;
+         Task<User> Register(User user, string password);
+         Task<User> Login(string username, string password);
+         Task<bool> UserExists(string username);
          Task<Order> GetOrderById(int id);
          Task<IEnumerable<Order>> GetOrders();
          Task<Message> GetMessageById(int id);

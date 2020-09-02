@@ -12,4 +12,6 @@ export interface OrderDetails {
     plagiarismReport: boolean;
     wordFormatting: boolean;
     totalDiscount?: number;
+    isCompleted?: boolean;
+    isDeleted?: boolean;
 }

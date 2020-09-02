@@ -9,5 +9,6 @@ namespace Prowriters.API.Models
         public string Email { get; set; }
         public string MessageDetails { get; set; }
         public DateTime MessageDate { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
