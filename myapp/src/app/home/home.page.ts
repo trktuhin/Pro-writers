@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../_services/order.service';
 import { ToastController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class HomePage implements OnInit {
 
   constructor(private orderService: OrderService, private toastCtrl: ToastController,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -30,5 +31,17 @@ export class HomePage implements OnInit {
       position: 'top',
       color: 'success'
     }).then(el => el.present());
+  }
+
+  goToOrder() {
+    this.router.navigate(['order']);
+  }
+
+  goToContact() {
+    this.router.navigate(['contact']);
+  }
+
+  goToServices() {
+    this.router.navigate(['services']);
   }
 }

@@ -14,8 +14,8 @@
           <span>About</span>
         </a>
       </li>
-      <li class="side-nav__item">
-        <a href="#" class="side-nav__link">
+      <li class="side-nav__item" (click)="onCancel()"  routerLinkActive="side-nav__item-active">
+        <a routerLink="services" class="side-nav__link">
           <ion-icon class="side-nav__icon" name="snow"></ion-icon>
           <span>Services</span>
         </a>

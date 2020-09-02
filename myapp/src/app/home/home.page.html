@@ -3,7 +3,7 @@
     <h2 class="heading-2 color-grey-dark-1">Welcome to the home of Pro-Writers </h2>
     <h3 class="heading-3 color-secondary">Make your own book</h3>
     <h1 class="heading-1 animated-heading">The ultimate personal success !</h1>
-    <button class="cool__btn cool__btn-secondary header__button animate-moveInBottom">View your offers</button>
+    <button (click)="goToOrder()" class="cool__btn cool__btn-secondary header__button animate-moveInBottom">Order Now</button>
     <div class="header__seenon-text">Based on</div>
     <div class="header__seenon-logos">
       <img src="../../assets/kindle-logo.jpg" alt="">
@@ -16,54 +16,54 @@
       <div class="card__side card__side-front card__side-front-1">
         <div class="card__header card__header-1">
         </div>
-        <div class="card__title">Technical Books</div>
+        <div class="card__title">Free consultation</div>
         <div class="card__details">
           <ul>
-            <li>$15 per 1000 words</li>
-            <li>Unlimited revisions</li>
-            <li>10 days money back guarantee</li>
-            <li>Alteast 70% advance payment</li>
+            <li>No charge at all for any suggestions or tips</li>
+            <li>Feel free to tell us about your thinking</li>
+            <li>Love to turn concepts into reality</li>
+            <li>Take time to make a good decision</li>
           </ul>
         </div>
       </div>
       <div class="card__side card__side-back card__side-back-1">
-        <button class="cool__btn cool__btn-primary header__button animate-moveInBottom">Order Now</button>
+        <button (click)="goToContact()" class="cool__btn cool__btn-primary header__button animate-moveInBottom">Contact Us</button>
       </div>
     </div>
     <div class="card">
       <div class="card__side card__side-front card__side-front-2">
         <div class="card__header card__header-2">
         </div>
-        <div class="card__title">Erotic Books</div>
+        <div class="card__title">Get Success</div>
         <div class="card__details">
           <ul>
-            <li>$15 per 1000 words</li>
-            <li>Unlimited revisions</li>
-            <li>10 days money back guarantee</li>
-            <li>Alteast 70% advance payment</li>
+            <li>Unlimited revisions by highly equalified guys</li>
+            <li>Get all the updates time to time</li>
+            <li>Guaranteed timely delivery </li>
+            <li>Satisfaction ensured</li>
           </ul>
         </div>
       </div>
       <div class="card__side card__side-back card__side-back-2">
-        <button class="cool__btn cool__btn-primary header__button animate-moveInBottom">Order Now</button>
+        <button (click)="goToOrder()" class="cool__btn cool__btn-primary header__button animate-moveInBottom">Order Now</button>
       </div>
     </div>
     <div class="card">
       <div class="card__side card__side-front card__side-front-3">
         <div class="card__header card__header-3">
         </div>
-        <div class="card__title">Others</div>
+        <div class="card__title">Cancel Order</div>
         <div class="card__details">
           <ul>
-            <li>$15 per 1000 words</li>
-            <li>Unlimited revisions</li>
-            <li>10 days money back guarantee</li>
-            <li>Alteast 70% advance payment</li>
+            <li>Cancel Order Before Final Delivery</li>
+            <li>Get Your Money Back</li>
+            <li>Just Contact Us</li>
+            <li>No Explanation Needed</li>
           </ul>
         </div>
       </div>
       <div class="card__side card__side-back card__side-back-3">
-        <button class="cool__btn cool__btn-primary header__button animate-moveInBottom">Order Now</button>
+        <button (click)="goToServices()" class="cool__btn cool__btn-primary header__button animate-moveInBottom">Our Services</button>
       </div>
     </div>
   </div>
@@ -73,6 +73,22 @@
     <div class="stories__container">
       <div class="story">
         <figure class="story__shape story__shape-1"></figure>
+        <div class="story__text">
+          <h3>I had the best book of my life</h3>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, accusamus repellendus corrupti enim animi
+            deserunt. Eligendi iusto, itaque cum, doloremque quae quisquam officia incidunt molestias dolorem ut
+            distinctio assumenda voluptatibus?</p>
+        </div>
+        <div class="story__caption">
+          <div class="story__caption-container">
+            <span class="story__caption-author">Donald J Trump</span>
+            <span class="story__caption-designation">President, America</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story">
+        <figure class="story__shape story__shape-2"></figure>
         <div class="story__text">
           <h3>I had the best book of my life</h3>
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, accusamus repellendus corrupti enim animi

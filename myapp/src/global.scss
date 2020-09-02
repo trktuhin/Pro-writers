@@ -40,7 +40,9 @@
 .modal-nav {
     --background: transparent !important;
 }
-
+.margin-bottom-adjsut {
+    margin-bottom: 8rem;
+}
 html {
     font-size: 62.5%; // 1 rem = 10px
     @include respond(tab-land) { // 1rem = 9px

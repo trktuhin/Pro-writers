@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'card',
     component: CreditCardPaymentComponent
+  },
+  {
+    path: 'services',
+    loadChildren: () => import('./services/services.module').then( m => m.ServicesPageModule)
   }
 ];
 

@@ -1,0 +1,57 @@
+.service {
+    &__header {
+        background: linear-gradient(rgba(74, 92, 78,.92), rgba(74, 92, 78,.80)),
+        url(../../assets/service.jpg);
+        min-height: 90vh;
+        background-size: cover;
+        background-position: center;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        padding: 8rem;
+        grid-row-gap: 2rem;
+        align-items: start;
+        margin-bottom: 3rem;
+    }
+}
+.service-icon {
+    font-size: 6rem;
+    color: #fc3d03;
+}
+.service_header {
+    text-align: center;
+}
+.service-box {
+    margin: 0 3rem;
+    background-color: #a5a8ad;
+    padding: 2rem;
+    min-height: 25rem;
+    transition: all .4s;
+}
+.button-holder {
+    margin-top: 2rem;
+    background-color: #505050;
+    padding: 3rem;
+    text-align: center;
+}
+
+.service-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 2.5rem 4rem rgba(0, 0, 0,.4);
+}
+.box-header-text {
+    text-align: center;
+    font-weight: 800;
+    background-image: linear-gradient(to right, #ff003f, #050001);
+    // display: inline-block;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.box-content p {
+    font-size: 1.6rem;
+    color: #46494d;
+    // letter-spacing: 2px;
+}

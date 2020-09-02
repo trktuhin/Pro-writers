@@ -19,6 +19,18 @@ export class ContactPage implements OnInit {
   }
 
   SendMessage() {
+    if (this.fullName === '') {
+      this.showErrorMessage('Please Enter your full name first !');
+      return;
+    }
+    if (this.emailAddress === '') {
+      this.showErrorMessage('Please Enter your email first !');
+      return;
+    }
+    if (this.message === '') {
+      this.showErrorMessage('Please Enter your message first !');
+      return;
+    }
     const model: ContactDetails = {
       name: this.fullName,
       messageDetails: this.message,
@@ -38,6 +50,15 @@ export class ContactPage implements OnInit {
       duration: 3000,
       position: 'top',
       color: 'success'
+    }).then(el => el.present());
+  }
+
+  showErrorMessage(errMessage: string) {
+    this.toastCtrl.create({
+      message: errMessage,
+      duration: 3000,
+      position: 'top',
+      color: 'danger'
     }).then(el => el.present());
   }
 
