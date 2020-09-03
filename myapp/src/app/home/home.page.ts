@@ -18,8 +18,12 @@ export class HomePage implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params.paymentConfirmation) {
         const currentOrderId = +localStorage.getItem('currentOrderId');
+        if(currentOrderId === 0) {
+          return;
+        }
         this.orderService.confirmPayment(currentOrderId).subscribe(res => {
           this.showSuccessMessage();
+          localStorage.removeItem('currentOrderId');
         }, err => console.log(err));
       }
     });

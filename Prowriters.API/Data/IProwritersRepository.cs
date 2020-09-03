@@ -17,5 +17,8 @@ namespace Prowriters.API.Data
          Task<IEnumerable<Order>> GetOrders();
          Task<Message> GetMessageById(int id);
          Task<IEnumerable<Message>> GetMessages();
+         Task<Coupon> GetCouponById(int id);
+         Task<Coupon> GetCouponByValue(string value);
+         Task<IEnumerable<Coupon>> GetCoupons();
     }
 }

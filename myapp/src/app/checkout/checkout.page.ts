@@ -4,7 +4,8 @@ import { OrderService } from '../_services/order.service';
 import { OrderDetails } from '../_models/orderDetails';
 import { StripeScriptService } from '../_services/stripe-script.service';
 import { environment } from 'src/environments/environment';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
+import { CouponService } from '../_services/coupon.service';
 
 @Component({
   selector: 'app-checkout',
@@ -13,6 +14,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class CheckoutPage implements OnInit, OnDestroy {
   discount = 0;
+  couponValue = '';
   currentOrder: OrderDetails;
   card: any;
   result: any;
@@ -23,7 +25,9 @@ export class CheckoutPage implements OnInit, OnDestroy {
   constructor(private router: Router,
               private orderService: OrderService,
               private toastCtrl: ToastController,
-              private stripeScriptService: StripeScriptService) { }
+              private stripeScriptService: StripeScriptService,
+              private couponService: CouponService,
+              private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     window.addEventListener('message', this.receiveMessage, false);
@@ -32,24 +36,12 @@ export class CheckoutPage implements OnInit, OnDestroy {
     window.addEventListener('message', this.receiveMessage, false);
     this.clearInterval();
   }
-  // showPaymentConfirmation() {
-  //   this.toastCtrl.create({
-  //     message: 'We received your payment and will update you about your project',
-  //     duration: 3000,
-  //     position: 'top',
-  //     cssClass: 'success'
-  //   }).then(el => el.present);
-  // }
   receiveMessage(event) {
-    // if (event.origin !== environment.baseDomain) { return; }
-    // confirm payment
-    // this.showPaymentConfirmation();
     console.log('Transaction completed ' + JSON.stringify(event.data));
     this.clearInterval();
-    window.location.href = 'http://localhost:4200/home?paymentConfirmation=success';
-    // this.orderService.confirmPayment(this.currentOrderId).subscribe(res => {
-    //   this.router.navigate(['home']);
-    // }, err => console.log(err));
+    if (event.data) {
+      window.location.href = 'http://localhost:4200/home?paymentConfirmation=success';
+    }
     }
   private clearInterval(): void {
     if (this.timeout) {
@@ -105,8 +97,41 @@ export class CheckoutPage implements OnInit, OnDestroy {
   }
 
   addOrderToServer() {
+    this.currentOrder.totalDiscount = this.discount;
     this.orderService.addOrder(this.currentOrder).subscribe(res => {
       localStorage.setItem('currentOrderId', res as string);
     }, err => console.log(err));
+  }
+
+  applyCoupon() {
+    if (this.couponValue === '') {
+      this.showErrorMessage('Please enter your coupon first !');
+    }
+    this.loadingCtrl.create({
+      spinner: 'bubbles',
+      message: 'Checking ....'
+    }).then(el => {
+      el.present();
+      this.couponService.applyCoupon(this.couponValue).subscribe((res: any) => {
+        const discountPercent = +res.discountPercent;
+        this.calculateDiscount(discountPercent);
+      }, err => {
+        this.discount = 0;
+        this.showErrorMessage('Invalid coupon !');
+      });
+      this.loadingCtrl.dismiss();
+    });
+  }
+  showErrorMessage(errMessage: string) {
+    this.toastCtrl.create({
+      message: errMessage,
+      duration: 3000,
+      position: 'top',
+      color: 'danger'
+    }).then(el => el.present());
+  }
+  calculateDiscount(discountPercent: number) {
+    const currentBasePrice = +this.currentOrder.noOfWord / 1000 * 15;
+    this.discount = (currentBasePrice * discountPercent) / 100;
   }
 }

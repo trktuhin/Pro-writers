@@ -10,6 +10,7 @@ namespace Prowriters.API.Helpers
         {
             CreateMap<OrderDto, Order>();
             CreateMap<MessageDto, Message>();
+            CreateMap<CouponCreationDto, Coupon>();
         }
     }
 }
