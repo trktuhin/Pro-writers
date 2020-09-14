@@ -35,6 +35,14 @@ const routes: Routes = [
   {
     path: 'services',
     loadChildren: () => import('./services/services.module').then( m => m.ServicesPageModule)
+  },
+  {
+    path: 'admin/login',
+    loadChildren: () => import('./admin/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'admin/dashboard',
+    loadChildren: () => import('./admin/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   }
 ];
 

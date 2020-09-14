@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Prowriters.API.Helpers;
 using Prowriters.API.Models;
 
 namespace Prowriters.API.Data
@@ -41,9 +42,18 @@ namespace Prowriters.API.Data
             return await _context.Orders.FirstOrDefaultAsync(order => order.Id == id);
         }
 
-        public async Task<IEnumerable<Order>> GetOrders()
+        public async Task<PagedList<Order>> GetOrders(OrderParams orderParams)
         {
-            return await _context.Orders.OrderByDescending(or => or.OrderDate).ToListAsync();
+            var orders = _context.Orders.OrderByDescending(or => or.OrderDate).AsQueryable();
+            if (!string.IsNullOrWhiteSpace(orderParams.BookTitle))
+            {
+                orders = orders.Where(order => order.BookTitle.ToLower()
+                .Contains(orderParams.BookTitle.ToLower()));
+            }
+            orders = orders.Where(order => order.IsDeleted == false && 
+            order.IsCompleted == orderParams.IsCompleted && 
+            order.IsPaymentReceived == orderParams.IsPaymentReceived);
+            return await PagedList<Order>.CreateAsync(orders, orderParams.PageNumber, orderParams.PageSize);
         }
 
         public async Task<Message> GetMessageById(int id)
@@ -51,9 +61,10 @@ namespace Prowriters.API.Data
             return await _context.Messages.FirstOrDefaultAsync(message => message.Id == id);
         }
 
-        public async Task<IEnumerable<Message>> GetMessages()
+        public async Task<PagedList<Message>> GetMessages(OrderParams orderParams)
         {
-            return await _context.Messages.OrderByDescending(message => message.MessageDate).ToListAsync();
+            var messages = _context.Messages.OrderByDescending(message => message.MessageDate);
+            return await PagedList<Message>.CreateAsync(messages, orderParams.PageNumber, orderParams.PageSize);
         }
 
         public async Task<User> Register(User user, string password)

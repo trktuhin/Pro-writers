@@ -14,4 +14,5 @@ export interface OrderDetails {
     totalDiscount?: number;
     isCompleted?: boolean;
     isDeleted?: boolean;
+    isPaymentReceived?: boolean;
 }

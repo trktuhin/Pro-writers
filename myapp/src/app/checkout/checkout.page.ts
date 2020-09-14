@@ -132,6 +132,6 @@ export class CheckoutPage implements OnInit, OnDestroy {
   }
   calculateDiscount(discountPercent: number) {
     const currentBasePrice = +this.currentOrder.noOfWord / 1000 * 15;
-    this.discount = (currentBasePrice * discountPercent) / 100;
+    this.discount = Math.ceil((currentBasePrice * discountPercent) / 100);
   }
 }

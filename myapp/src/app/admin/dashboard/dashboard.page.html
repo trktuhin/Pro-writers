@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="dashboard-conatiner">
+  <ion-segment value="orders" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="orders">Orders</ion-segment-button>
+    <ion-segment-button value="messages">Messages</ion-segment-button>
+    <ion-segment-button value="coupons">Coupons</ion-segment-button>
+  </ion-segment>
+  <div *ngIf="currentSegment ==='orders'">
+    <div *ngIf="orders">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <ion-item>
+              <ion-label color="medium" position="floating">Search by book title</ion-label>
+              <ion-input placeholder="" type="text" [(ngModel)]="bookTitleSearch"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item>
+              <ion-label color="medium" position="floating">Payment Received</ion-label>
+              <ion-select [(ngModel)]="isPaymentDropdownValue">
+                <ion-select-option value="yes">Yes</ion-select-option>
+                <ion-select-option value="no">No</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item>
+              <ion-label color="medium" position="floating">Is Completed</ion-label>
+              <ion-select [(ngModel)]="isCompletedDropdownValue">
+                <ion-select-option value="yes">Yes</ion-select-option>
+                <ion-select-option value="no">No</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button color="dark" (click)="filterOrders()">
+              <ion-icon name="search" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="text-muted">Book Title</ion-col>
+          <ion-col size="3" class="text-muted">Client Name</ion-col>
+          <ion-col size="2" class="text-muted">No of words</ion-col>
+          <ion-col size="1" class="text-muted">Delete</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let order of orders" >
+          <ion-col (click)="openOrderModal(order)" size="6">{{order.bookTitle|titlecase}}</ion-col>
+          <ion-col size="3">{{order.clientName}}</ion-col>
+          <ion-col size="2">{{order.noOfWord}}</ion-col>
+          <ion-col size="1">
+            <ion-button (click)="onDeleteOrder(order.id)" color="danger">
+              <ion-icon name="trash" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div *ngIf="orderPagination" class="d-flex justify-content-center mt-2">
+        <pagination [boundaryLinks]="true" [totalItems]="orderPagination.totalItems"
+          [(ngModel)]="orderPagination.currentPage" [itemsPerPage]="orderPagination.itemsPerPage"
+          (pageChanged)="orderPageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+          lastText="&raquo;" [maxSize]="5" [rotate]="false"></pagination>
+      </div>
+    </div>
+  </div>
+</ion-content>

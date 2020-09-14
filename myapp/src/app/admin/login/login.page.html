@@ -1,0 +1,27 @@
+<ion-content>
+  <div [formGroup]="loginForm" class="content-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offset-md="2">
+          <ion-item>
+            <ion-label position="floating" color="medium">Username</ion-label>
+            <ion-input type="text" name="username" formControlName="username"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" size-md="8" offset-md="2">
+          <ion-item>
+            <ion-label position="floating" color="medium">Password</ion-label>
+            <ion-input type="password" name="fullName" formControlName="password"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-center>
+        <ion-col class="ion-text-center">
+            <ion-button expand="block" class="full-big-button" (click)="login()" color="success">Login</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

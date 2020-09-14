@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Prowriters.API.Helpers;
 using Prowriters.API.Models;
 
 namespace Prowriters.API.Data
@@ -14,9 +15,9 @@ namespace Prowriters.API.Data
          Task<User> Login(string username, string password);
          Task<bool> UserExists(string username);
          Task<Order> GetOrderById(int id);
-         Task<IEnumerable<Order>> GetOrders();
+         Task<PagedList<Order>> GetOrders(OrderParams userParams);
          Task<Message> GetMessageById(int id);
-         Task<IEnumerable<Message>> GetMessages();
+         Task<PagedList<Message>> GetMessages(OrderParams userParams);
          Task<Coupon> GetCouponById(int id);
          Task<Coupon> GetCouponByValue(string value);
          Task<IEnumerable<Coupon>> GetCoupons();

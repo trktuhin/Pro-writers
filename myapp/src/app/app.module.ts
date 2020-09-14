@@ -12,11 +12,16 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ModalNavComponent } from './modal-nav/modal-nav.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PaginationModule } from 'ngx-bootstrap';
+import { CreditCardPaymentComponent } from './order/credit-card-payment/credit-card-payment.component';
 
 @NgModule({
-  declarations: [AppComponent, SidebarComponent, NavbarComponent, ModalNavComponent],
+  declarations: [AppComponent, SidebarComponent, NavbarComponent, ModalNavComponent,
+    CreditCardPaymentComponent],
   entryComponents: [ModalNavComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+    PaginationModule.forRoot(),
+    HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,
