@@ -15,4 +15,5 @@ export interface OrderDetails {
     isCompleted?: boolean;
     isDeleted?: boolean;
     isPaymentReceived?: boolean;
+    orderDate?: Date;
 }

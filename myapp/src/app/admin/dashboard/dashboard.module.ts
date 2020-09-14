@@ -9,6 +9,7 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 import { DashboardPage } from './dashboard.page';
 import { PaginationModule } from 'ngx-bootstrap';
 import { DetailedOrderComponent } from '../detailed-order/detailed-order.component';
+import { DetailedMessageComponent } from '../detailed-message/detailed-message.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { DetailedOrderComponent } from '../detailed-order/detailed-order.compone
     DashboardPageRoutingModule,
     PaginationModule.forRoot()
   ],
-  declarations: [DashboardPage, DetailedOrderComponent],
-  entryComponents: [DetailedOrderComponent]
+  declarations: [DashboardPage, DetailedOrderComponent, DetailedMessageComponent],
+  entryComponents: [DetailedOrderComponent, DetailedMessageComponent]
 })
 export class DashboardPageModule {}

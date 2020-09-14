@@ -61,10 +61,21 @@ namespace Prowriters.API.Data
             return await _context.Messages.FirstOrDefaultAsync(message => message.Id == id);
         }
 
-        public async Task<PagedList<Message>> GetMessages(OrderParams orderParams)
+        public async Task<PagedList<Message>> GetMessages(MessageParams messageParams)
         {
-            var messages = _context.Messages.OrderByDescending(message => message.MessageDate);
-            return await PagedList<Message>.CreateAsync(messages, orderParams.PageNumber, orderParams.PageSize);
+            var messages = _context.Messages.OrderByDescending(message => message.MessageDate).AsQueryable();
+            if (!string.IsNullOrWhiteSpace(messageParams.Name))
+            {
+                messages = messages.Where(mess => mess.Name.ToLower()
+                .Contains(messageParams.Name.ToLower()));
+            }
+            if (!string.IsNullOrWhiteSpace(messageParams.Email))
+            {
+                messages = messages.Where(mess => mess.Email.ToLower()
+                .Contains(messageParams.Email.ToLower()));
+            }
+            messages = messages.Where(mess => mess.IsDeleted == false);
+            return await PagedList<Message>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
         }
 
         public async Task<User> Register(User user, string password)

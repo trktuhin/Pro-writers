@@ -17,7 +17,7 @@ namespace Prowriters.API.Data
          Task<Order> GetOrderById(int id);
          Task<PagedList<Order>> GetOrders(OrderParams userParams);
          Task<Message> GetMessageById(int id);
-         Task<PagedList<Message>> GetMessages(OrderParams userParams);
+         Task<PagedList<Message>> GetMessages(MessageParams messageParams);
          Task<Coupon> GetCouponById(int id);
          Task<Coupon> GetCouponByValue(string value);
          Task<IEnumerable<Coupon>> GetCoupons();

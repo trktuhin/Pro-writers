@@ -4,4 +4,5 @@ export interface ContactDetails {
     messageDetails: string;
     email: string;
     isDeleted?: boolean;
+    messageDate?: Date;
 }

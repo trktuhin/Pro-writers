@@ -13,45 +13,52 @@
 <ion-content>
   <div class="detailed-info">
     <ion-list>
-    <ion-item>
-      <ion-text color="medium">Subtitle: </ion-text><span>{{selectedOrder.subTitle}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">Author Name: </ion-text><span>{{selectedOrder.authorName}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">Description: </ion-text><span>lorem35{{selectedOrder.projectDescription}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">No of words: </ion-text><span>{{selectedOrder.noOfWord}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">Client Name: </ion-text><span>{{selectedOrder.clientName}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">Client Email: </ion-text><span>{{selectedOrder.clientEmail}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">Customized CopyrightPage: </ion-text><span>{{selectedOrder.customizedCopyrightPage? 'yes':'no'}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">Professional Book Description: </ion-text><span>{{selectedOrder.professionalBookDescription? 'yes':'no'}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">Plagiarism Report: </ion-text><span>{{selectedOrder.plagiarismReport? 'yes':'no'}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">Payment Received: </ion-text><span>{{selectedOrder.isPaymentReceived? 'yes':'no'}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">Word Formatting: </ion-text><span>{{selectedOrder.wordFormatting? 'yes':'no'}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">totalDiscount: </ion-text><span>{{selectedOrder.totalDiscount}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-text color="medium">Is Completed: </ion-text><span>{{selectedOrder.isCompleted? 'yes':'no'}}</span>
-    </ion-item>
-  </ion-list>
+      <ion-item>
+        <ion-text color="medium">Subtitle: </ion-text><span>{{selectedOrder.subTitle}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Author Name: </ion-text><span>{{selectedOrder.authorName}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Description: </ion-text><span>lorem35{{selectedOrder.projectDescription}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">No of words: </ion-text><span>{{selectedOrder.noOfWord}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Client Name: </ion-text><span>{{selectedOrder.clientName}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Client Email: </ion-text><span>{{selectedOrder.clientEmail}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Customized CopyrightPage: </ion-text>
+        <span>{{selectedOrder.customizedCopyrightPage? 'yes':'no'}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Professional Book Description: </ion-text>
+        <span>{{selectedOrder.professionalBookDescription? 'yes':'no'}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Plagiarism Report: </ion-text>
+        <span>{{selectedOrder.plagiarismReport? 'yes':'no'}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Payment Received: </ion-text>
+        <span>{{selectedOrder.isPaymentReceived? 'yes':'no'}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Word Formatting: </ion-text><span>{{selectedOrder.wordFormatting? 'yes':'no'}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">totalDiscount: </ion-text><span>{{selectedOrder.totalDiscount}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Is Completed: </ion-text><span>{{selectedOrder.isCompleted? 'yes':'no'}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Order Date: </ion-text><span>{{selectedOrder.orderDate|date:"mediumDate"}}</span>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

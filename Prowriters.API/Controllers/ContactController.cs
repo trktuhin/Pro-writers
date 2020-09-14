@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Prowriters.API.Data;
 using Prowriters.API.Dtos;
+using Prowriters.API.Helpers;
 using Prowriters.API.Models;
 
 namespace Prowriters.API.Controllers
@@ -31,6 +32,23 @@ namespace Prowriters.API.Controllers
             _repo.Add(messageToAdd);
             await _uow.Complete();
             return Ok(messageToAdd.Id);
+        }
+
+        [HttpPost("GetAllMessages")]
+        public async Task<IActionResult> GetAllOrders(MessageParams messageParams)
+        {
+            var messages = await _repo.GetMessages(messageParams);
+            Response.AddPagination(messages.CurrentPage, messages.PageSize, messages.TotalCount, messages.TotalPages);
+            return Ok(messages);
+        }
+
+        [HttpDelete("deleteMessage/{id}")]
+        public async Task<IActionResult> DeleteMessage(int id)
+        {
+            var messageInDb = await _repo.GetMessageById(id);
+            messageInDb.IsDeleted = true;
+            await _uow.Complete();
+            return Ok();
         }
     }
 }

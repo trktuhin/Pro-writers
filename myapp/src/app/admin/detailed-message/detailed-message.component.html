@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      {{selectedMessage.name|titlecase}}
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="px-2">
+    <ion-list>
+      <ion-item>
+        <ion-text color="medium">Email: </ion-text><span>{{selectedMessage.email}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Message: </ion-text><span>{{selectedMessage.messageDetails}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-text color="medium">Date: </ion-text><span>{{selectedMessage.messageDate|date:"medium"}}</span>
+      </ion-item>
+     
+    </ion-list>
+  </div>
+</ion-content>
