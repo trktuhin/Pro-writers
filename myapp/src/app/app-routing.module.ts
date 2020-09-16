@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CreditCardPaymentComponent } from './order/credit-card-payment/credit-card-payment.component';
+import { AuthGuardService } from './_guards/authGuard.service';
 
 const routes: Routes = [
   {
@@ -42,7 +43,8 @@ const routes: Routes = [
   },
   {
     path: 'admin/dashboard',
-    loadChildren: () => import('./admin/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    loadChildren: () => import('./admin/dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    canLoad: [AuthGuardService]
   }
 ];
 

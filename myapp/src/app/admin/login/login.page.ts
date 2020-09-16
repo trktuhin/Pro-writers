@@ -45,13 +45,13 @@ export class LoginPage implements OnInit {
       }).then(el => {
         el.present();
         loader.then(ldel => ldel.dismiss());
-        // this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/admin/dashboard');
       });
     }, err => {
       loader.then(ldel => ldel.dismiss());
       console.log(err);
       this.toastCtrl.create({
-        message: err,
+        message: 'Sorry! Username or password is incorrect',
         duration: 1000,
         color: 'danger'
       }).then(el => {

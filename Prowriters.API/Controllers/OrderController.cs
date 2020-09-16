@@ -59,5 +59,14 @@ namespace Prowriters.API.Controllers
             await _uow.Complete();
             return Ok();
         }
+
+        [HttpGet("markAsComplete/{id}")]
+        public async Task<IActionResult> MarkAsComplete(int id)
+        {
+            var orderInDb = await _repo.GetOrderById(id);
+            orderInDb.IsCompleted = true;
+            await _uow.Complete();
+            return Ok();
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace Prowriters.API.Controllers
         }
 
         [HttpPost("AddCoupon")]
-        public async Task<IActionResult> AddOrder(CouponCreationDto dto)
+        public async Task<IActionResult> AddCoupon(CouponCreationDto dto)
         {
             var couponToCreate = _mapper.Map<Coupon>(dto);
             couponToCreate.DateCreated = DateTime.Now;
@@ -41,6 +41,32 @@ namespace Prowriters.API.Controllers
             if(couponFromRepo.IsDeleted)
                 return BadRequest("Not a valid coupon");
             return Ok(couponFromRepo);
+        }
+
+        [HttpGet("GetAllCoupons")]
+        public async Task<IActionResult> GetAllCoupons()
+        {
+            var coupons = await _repo.GetCoupons();
+            return Ok(coupons);
+        }
+        [HttpDelete("deleteCoupon/{id}")]
+        public async Task<IActionResult> DeleteCoupon(int id)
+        {
+            var couponInDb = await _repo.GetCouponById(id);
+            if(couponInDb == null) return NotFound();
+            _repo.Delete(couponInDb);
+            await _uow.Complete();
+            return Ok();
+        }
+        [HttpPost("updateCoupon")]
+        public async Task<IActionResult> UpdateCoupon(Coupon dto)
+        {
+            var couponInDb = await _repo.GetCouponById(dto.Id);
+            if(couponInDb == null) return NotFound();
+            couponInDb.CouponValue = dto.CouponValue;
+            couponInDb.DiscountPercent = dto.DiscountPercent;
+            await _uow.Complete();
+            return Ok();
         }
     }
 }

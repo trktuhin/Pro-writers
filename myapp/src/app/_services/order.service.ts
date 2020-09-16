@@ -43,4 +43,7 @@ export class OrderService {
   deleteOrder(id: number) {
     return this.http.delete(this.baseUrl + 'deleteOrder/' + id);
   }
+  markAsComplete(id: number) {
+    return this.http.get(this.baseUrl + 'markAsComplete/' + id);
+  }
 }

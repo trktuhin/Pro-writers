@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      {{mode === 'edit'? 'Edit Coupon': 'New Coupon'}}
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="px-2">
+    <ion-list>
+      <ion-item>
+        <ion-label color="medium" position="floating">Coupon Value</ion-label>
+        <ion-input type="text" [(ngModel)]="currentCoupon.couponValue"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="medium" position="floating">Discount Value</ion-label>
+        <ion-input type="text" [(ngModel)]="currentCoupon.discountPercent"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div (click)="SaveUpdateCoupon()" class="text-center">
+      <ion-button color="success">{{mode === 'edit'? 'Update': 'Save'}}</ion-button>
+    </div>
+  </div>
+</ion-content>

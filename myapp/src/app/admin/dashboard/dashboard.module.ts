@@ -10,6 +10,7 @@ import { DashboardPage } from './dashboard.page';
 import { PaginationModule } from 'ngx-bootstrap';
 import { DetailedOrderComponent } from '../detailed-order/detailed-order.component';
 import { DetailedMessageComponent } from '../detailed-message/detailed-message.component';
+import { AddCouponComponent } from '../add-coupon/add-coupon.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { DetailedMessageComponent } from '../detailed-message/detailed-message.c
     DashboardPageRoutingModule,
     PaginationModule.forRoot()
   ],
-  declarations: [DashboardPage, DetailedOrderComponent, DetailedMessageComponent],
-  entryComponents: [DetailedOrderComponent, DetailedMessageComponent]
+  declarations: [DashboardPage, DetailedOrderComponent, DetailedMessageComponent, AddCouponComponent],
+  entryComponents: [DetailedOrderComponent, DetailedMessageComponent, AddCouponComponent]
 })
 export class DashboardPageModule {}

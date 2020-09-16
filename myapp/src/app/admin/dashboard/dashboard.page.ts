@@ -7,6 +7,9 @@ import { DetailedOrderComponent } from '../detailed-order/detailed-order.compone
 import { MessageService } from 'src/app/_services/message.service';
 import { ContactDetails } from 'src/app/_models/contactDetails';
 import { DetailedMessageComponent } from '../detailed-message/detailed-message.component';
+import { CouponDetails } from 'src/app/_models/couponDetails';
+import { CouponService } from 'src/app/_services/coupon.service';
+import { AddCouponComponent } from '../add-coupon/add-coupon.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +21,7 @@ export class DashboardPage implements OnInit {
   messagePagination: Pagination;
   orders: OrderDetails[] = [];
   messages: ContactDetails[] = [];
+  coupons: CouponDetails[] = [];
   currentSegment = 'orders';
   bookTitleSearch = '';
   isPaymentReceivedSearch = true;
@@ -31,6 +35,7 @@ export class DashboardPage implements OnInit {
               private modalCtrl: ModalController,
               private alertCtrl: AlertController,
               private toastCtrl: ToastController,
+              private couponService: CouponService,
               private messageService: MessageService) { }
 
   ngOnInit() {
@@ -44,6 +49,7 @@ export class DashboardPage implements OnInit {
       el.present();
       this.loadOrders();
       this.loadMessages();
+      this.loadCoupons();
       el.dismiss();
     });
   }
@@ -112,6 +118,44 @@ export class DashboardPage implements OnInit {
     }, err => console.log(err));
   }
 
+  loadCoupons() {
+    this.couponService.getAllCoupons().subscribe((res: CouponDetails[]) => {
+      this.coupons = res;
+    }, err => console.log(err));
+  }
+
+  deleteCoupon(couponId: number) {
+    this.alertCtrl.create({
+      header: 'Are you sure?',
+      message: 'The coupon will be deleted',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'btn-secondary',
+        },
+        {
+          text: 'Confirm',
+          cssClass: 'btn-primary',
+          handler: () => {
+            this.couponService.deletecoupon(couponId).subscribe(res => {
+              this.showSuccessMessage('Coupon deleted successfully');
+              // reloading the orders
+              this.loadingCtrl.create({
+                spinner: 'bubbles',
+                message: 'please wait...'
+              }).then(el => {
+                el.present();
+                this.loadCoupons();
+                el.dismiss();
+              });
+            }, err => this.showErrorMessage('Could not delete the coupon'));
+          }
+        }
+      ]
+    }).then(alertEl => alertEl.present());
+  }
+
   openOrderModal(order: OrderDetails) {
     this.modalCtrl.create({
       component: DetailedOrderComponent,
@@ -127,6 +171,21 @@ export class DashboardPage implements OnInit {
       componentProps: {selectedMessage: message}
     }).then( el => {
       el.present();
+    });
+  }
+  openAddCouponModal(actionMode: string, coupon?: CouponDetails) {
+    if (actionMode === 'edit') {
+      this.couponService.saveCoupon(coupon);
+    }
+    this.modalCtrl.create({
+      component: AddCouponComponent,
+      componentProps: {mode: actionMode}}).then( el => {
+      el.present();
+      return el.onDidDismiss();
+    }).then(resultData => {
+      if (resultData?.role === 'success') {
+        this.loadCoupons();
+      }
     });
   }
 
@@ -160,6 +219,19 @@ export class DashboardPage implements OnInit {
         }
       ]
     }).then(alertEl => alertEl.present());
+  }
+  markAsFinished(orderId: number) {
+    this.orderService.markAsComplete(orderId).subscribe(res => {
+      this.loadingCtrl.create({
+        spinner: 'bubbles',
+        message: 'please wait...'
+      }).then(el => {
+        el.present();
+        this.loadOrders();
+        this.showSuccessMessage('Marked completed succefully');
+        el.dismiss();
+      });
+    }, err => this.showErrorMessage('Could not mark completed'));
   }
   onDeleteMessage(messageId: number) {
     this.alertCtrl.create({

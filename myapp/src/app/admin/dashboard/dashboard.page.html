@@ -45,16 +45,19 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="6" class="text-muted">Book Title</ion-col>
+          <ion-col size="5" class="text-muted">Book Title</ion-col>
           <ion-col size="3" class="text-muted">Client Name</ion-col>
           <ion-col size="2" class="text-muted">No of words</ion-col>
-          <ion-col size="1" class="text-muted">Delete</ion-col>
+          <ion-col size="2" class="text-muted">Action</ion-col>
         </ion-row>
         <ion-row *ngFor="let order of orders" >
-          <ion-col (click)="openOrderModal(order)" size="6">{{order.bookTitle|titlecase}}</ion-col>
+          <ion-col (click)="openOrderModal(order)" size="5">{{order.bookTitle|titlecase}}</ion-col>
           <ion-col size="3">{{order.clientName}}</ion-col>
           <ion-col size="2">{{order.noOfWord}}</ion-col>
-          <ion-col size="1">
+          <ion-col size="2">
+            <ion-button *ngIf="!order.isCompleted" (click)="markAsFinished(order.id)" color="success">
+              <ion-icon name="checkmark-circle" slot="icon-only"></ion-icon>
+            </ion-button>
             <ion-button (click)="onDeleteOrder(order.id)" color="danger">
               <ion-icon name="trash" slot="icon-only"></ion-icon>
             </ion-button>
@@ -70,7 +73,7 @@
     </div>
   </div>
   <div *ngIf="currentSegment ==='messages'">
-    <div *ngIf="messages">
+    <div>
       <ion-grid>
         <ion-row>
           <ion-col size="4">
@@ -116,5 +119,32 @@
       </div>
     </div>
   </div>
-  
+  <div *ngIf="currentSegment ==='coupons'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-button color="dark" (click)="openAddCouponModal('new')">
+            <ion-icon name="add-circle" slot="start"></ion-icon>
+            <ion-label>Add Coupon</ion-label>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="text-muted">Coupon Text</ion-col>
+        <ion-col size="3" class="text-muted">Discount Percent</ion-col>
+        <ion-col size="3" class="text-muted">Created Date</ion-col>
+        <ion-col size="1" class="text-muted">Delete</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let coupon of coupons" >
+        <ion-col (click)="openAddCouponModal('edit', coupon)" size="5">{{coupon.couponValue}}</ion-col>
+        <ion-col size="3">{{coupon.discountPercent}}</ion-col>
+        <ion-col size="3">{{coupon.dateCreated| date:'mediumDate'}}</ion-col>
+        <ion-col size="1">
+          <ion-button (click)="deleteCoupon(coupon.id)" color="danger">
+            <ion-icon name="trash" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
