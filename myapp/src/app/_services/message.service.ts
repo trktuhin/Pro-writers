@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ContactDetails } from '../_models/contactDetails';
 import { PaginatedResult } from '../_models/Pagination';
 import { map } from 'rxjs/operators';
+
+const tokenHeader = new HttpHeaders({
+  Authorization: 'Bearer ' + localStorage.getItem('token')
+});
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +23,8 @@ export class MessageService {
 
   getAllMessages(messageParams) {
     const paginatedResult: PaginatedResult<ContactDetails[]> = new PaginatedResult<ContactDetails[]>();
-    return this.http.post(this.baseUrl + 'GetAllMessages', messageParams, {observe: 'response'}).pipe(
+    return this.http.post(this.baseUrl + 'GetAllMessages', messageParams,
+    {observe: 'response', headers: tokenHeader}).pipe(
       map((res: any) => {
         paginatedResult.result = res.body;
         if (res.headers.get('Pagination') != null) {
@@ -31,7 +36,7 @@ export class MessageService {
   }
 
   deleteMessage(id: number) {
-    return this.http.delete(this.baseUrl + 'deleteMessage/' + id);
+    return this.http.delete(this.baseUrl + 'deleteMessage/' + id, {headers: tokenHeader});
   }
 
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Prowriters.API.Data;
 using Prowriters.API.Dtos;
@@ -35,6 +36,7 @@ namespace Prowriters.API.Controllers
         }
 
         [HttpPost("GetAllMessages")]
+        [Authorize]
         public async Task<IActionResult> GetAllOrders(MessageParams messageParams)
         {
             var messages = await _repo.GetMessages(messageParams);
@@ -43,6 +45,7 @@ namespace Prowriters.API.Controllers
         }
 
         [HttpDelete("deleteMessage/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteMessage(int id)
         {
             var messageInDb = await _repo.GetMessageById(id);

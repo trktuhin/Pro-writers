@@ -19,9 +19,13 @@ import { CreditCardPaymentComponent } from './order/credit-card-payment/credit-c
   declarations: [AppComponent, SidebarComponent, NavbarComponent, ModalNavComponent,
     CreditCardPaymentComponent],
   entryComponents: [ModalNavComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
     PaginationModule.forRoot(),
-    HttpClientModule],
+    HttpClientModule
+  ],
   providers: [
     StatusBar,
     SplashScreen,
@@ -29,4 +33,4 @@ import { CreditCardPaymentComponent } from './order/credit-card-payment/credit-c
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

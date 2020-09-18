@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Prowriters.API.Data;
 using Prowriters.API.Dtos;
@@ -44,6 +45,7 @@ namespace Prowriters.API.Controllers
         }
 
         [HttpPost("GetAllOrders")]
+        [Authorize]
         public async Task<IActionResult> GetAllOrders(OrderParams userParams)
         {
             var orders = await _repo.GetOrders(userParams);
@@ -52,6 +54,7 @@ namespace Prowriters.API.Controllers
         }
 
         [HttpDelete("deleteOrder/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteOrder(int id)
         {
             var orderInDb = await _repo.GetOrderById(id);
@@ -61,6 +64,7 @@ namespace Prowriters.API.Controllers
         }
 
         [HttpGet("markAsComplete/{id}")]
+        [Authorize]
         public async Task<IActionResult> MarkAsComplete(int id)
         {
             var orderInDb = await _repo.GetOrderById(id);

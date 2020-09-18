@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Prowriters.API.Data;
 using Prowriters.API.Dtos;
@@ -23,6 +24,7 @@ namespace Prowriters.API.Controllers
         }
 
         [HttpPost("AddCoupon")]
+        [Authorize]
         public async Task<IActionResult> AddCoupon(CouponCreationDto dto)
         {
             var couponToCreate = _mapper.Map<Coupon>(dto);
@@ -44,12 +46,14 @@ namespace Prowriters.API.Controllers
         }
 
         [HttpGet("GetAllCoupons")]
+        [Authorize]
         public async Task<IActionResult> GetAllCoupons()
         {
             var coupons = await _repo.GetCoupons();
             return Ok(coupons);
         }
         [HttpDelete("deleteCoupon/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteCoupon(int id)
         {
             var couponInDb = await _repo.GetCouponById(id);
@@ -59,6 +63,7 @@ namespace Prowriters.API.Controllers
             return Ok();
         }
         [HttpPost("updateCoupon")]
+        [Authorize]
         public async Task<IActionResult> UpdateCoupon(Coupon dto)
         {
             var couponInDb = await _repo.GetCouponById(dto.Id);
