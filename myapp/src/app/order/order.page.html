@@ -3,7 +3,7 @@
     <ion-grid [formGroup]="orderForm">
       <ion-row justify-content-center>
         <ion-col class="ion-text-center">
-          <ion-text class="size-18" color="secondary">Please fill the information first</ion-text>
+          <ion-text class="size-18" color="primary">Please fill the information first</ion-text>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -45,6 +45,15 @@
             <ion-label position="floating" color="medium">Project Description</ion-label>
             <ion-textarea type="text" formControlName="projectDescription"></ion-textarea>
           </ion-item>
+          <!-- <span class="text-muted text-note">*Send your additional documents to our email address: office@prowriters.com*</span> -->
+        </ion-col>
+
+        <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
+          <ion-item>
+            <ion-input accept=".docx,.doc,.pdf,.txt" type="file" name="docFile"
+            (change)="onFileChange($event)"
+            formControlName="docFile"></ion-input>
+          </ion-item>
         </ion-col>
 
         <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
@@ -60,25 +69,26 @@
 
         <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
           <ion-item>
-            <ion-checkbox formControlName="customizedCopyrightPage" color="secondary" checked slot="start"></ion-checkbox>
+            <ion-checkbox formControlName="customizedCopyrightPage" color="secondary" slot="start"></ion-checkbox>
             <ion-label>Customized Copyright Page ($10)</ion-label>
           </ion-item>
         </ion-col>
         <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
           <ion-item>
-            <ion-checkbox formControlName="professionalBookDescription" color="dark" checked slot="start"></ion-checkbox>
+            <ion-checkbox formControlName="professionalBookDescription" color="dark" slot="start"></ion-checkbox>
             <ion-label>Professional Book Description ($0)</ion-label>
           </ion-item>
         </ion-col>
         <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
           <ion-item>
-            <ion-checkbox formControlName="plagiarismReport" color="danger" checked slot="start"></ion-checkbox>
+            <ion-checkbox formControlName="plagiarismReport" color="danger" slot="start"></ion-checkbox>
             <ion-label>Plagiarism Report ($15)</ion-label>
           </ion-item>
         </ion-col>
         <ion-col size-md="6" offset-md="3" size-xs="10" offset-xs="1">
           <ion-item>
-            <ion-checkbox formControlName="wordFormatting" color="tertiary" checked slot="start"></ion-checkbox>
+            <ion-checkbox formControlName="wordFormatting"
+            color="tertiary" slot="start"></ion-checkbox>
             <ion-label>Word Formatting ($0)</ion-label>
           </ion-item>
         </ion-col>

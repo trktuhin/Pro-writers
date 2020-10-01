@@ -21,17 +21,19 @@ export class OrderService {
 
   saveOrder(order: OrderDetails) {
     this.currentOrder = order;
+    console.log(this.currentOrder);
   }
   getCurrentOrder() {
     return this.currentOrder;
   }
-  addOrder(order: OrderDetails){
+  addOrder(order: FormData){
     return this.http.post(this.baseUrl + 'AddOrder', order);
   }
   confirmPayment(id: number) {
     return this.http.get(this.baseUrl + 'PaymentConfirmation/' + id, {headers: tokenHeader});
   }
   getAllOrder(orderParams) {
+    // console.log(tokenHeader);
     const paginatedResult: PaginatedResult<OrderDetails[]> = new PaginatedResult<OrderDetails[]>();
     return this.http.post(this.baseUrl + 'GetAllOrders', orderParams, {
       observe: 'response',

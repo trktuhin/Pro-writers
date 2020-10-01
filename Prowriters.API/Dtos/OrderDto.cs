@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace Prowriters.API.Dtos
 {
@@ -22,5 +23,6 @@ namespace Prowriters.API.Dtos
         public bool PlagiarismReport { get; set; }
         public bool WordFormatting { get; set; }
         public float TotalDiscount { get; set; }
+        public IFormFile DocFile { get; set; }
     }
 }

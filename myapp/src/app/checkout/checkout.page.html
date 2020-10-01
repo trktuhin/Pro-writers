@@ -63,11 +63,20 @@
       <ion-label>Sub Total: ${{getSubTotalPrice()}}</ion-label>
     </ion-item>
   </ion-card>
-  <ion-grid>
+  <div class="ml-2">
+    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+  </div>
+  <!-- <ion-grid>
     <ion-row justify-content-center class="margin-bottom-adjsut">
       <ion-col class="ion-text-center">
         <ion-button (click)="checkout()" color="primary">Proceed Checkout</ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+    <ion-row justify-content-center class="margin-bottom-adjsut">
+      <ion-col class="ion-text-center">
+        <div [id]="payPalButtonId"></div>
+        <span>We already received your order. If you don't have paypal please contact us.</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
 </ion-content>

@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Prowriters.API.Data;
+using Prowriters.API.Models;
 
 namespace Prowriters.API
 {
@@ -38,6 +39,7 @@ namespace Prowriters.API
             services.AddCors();
             services.AddTransient<Seed>();
             services.AddAutoMapper();
+            // services.Configure<FileSettings>(Configuration.GetSection("FileSettings"));
             services.AddScoped<IProwritersRepository, ProwritersRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -1,8 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Prowriters.API.Data;
 using Prowriters.API.Dtos;
@@ -18,18 +22,31 @@ namespace Prowriters.API.Controllers
         private readonly IProwritersRepository _repo;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _uow;
-        public OrderController(IProwritersRepository repo, IMapper mapper, IUnitOfWork uow)
+        private readonly IHostingEnvironment _env;
+        public OrderController(IProwritersRepository repo, IMapper mapper, IUnitOfWork uow,
+                                IHostingEnvironment env)
         {
             _uow = uow;
             _mapper = mapper;
             _repo = repo;
+            _env = env;
 
         }
         [HttpPost("AddOrder")]
-        public async Task<IActionResult> AddOrder(OrderDto dto)
+        public async Task<IActionResult> AddOrder([FromForm]OrderDto dto)
         {
             var orderToAdd = _mapper.Map<Order>(dto);
             orderToAdd.OrderDate = DateTime.Now;
+            if (dto.DocFile != null)
+            {
+                string[]  acceptedFileTypes = {".doc",".txt",".docx",".pdf",".html",".xml"};
+                if (dto.DocFile.Length > 10485760) return BadRequest("Maximum size exceeded");
+                if (!(acceptedFileTypes.Any(s => s == Path.GetExtension(dto.DocFile.FileName).ToLower())))
+                {
+                    return BadRequest("Invalid file type");
+                }
+                await UploadFile(dto.DocFile, orderToAdd);
+            }
             _repo.Add(orderToAdd);
             await _uow.Complete();
             return Ok(orderToAdd.Id);
@@ -71,6 +88,29 @@ namespace Prowriters.API.Controllers
             orderInDb.IsCompleted = true;
             await _uow.Complete();
             return Ok();
+        }
+
+        private async Task UploadFile(IFormFile docFile, Order order)
+        {
+            var uploadFolderPath = Path.Combine(_env.WebRootPath, "images");
+            //creating folder if doesn't exist
+            if (!Directory.Exists(uploadFolderPath))
+            {
+                Directory.CreateDirectory(uploadFolderPath);
+            }
+            //removing existing filePath
+            if (!string.IsNullOrEmpty(order.FilePath))
+            {
+                var existingFilePath = Path.Combine(uploadFolderPath, order.FilePath);
+                System.IO.File.Delete(existingFilePath);
+            }
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(docFile.FileName);
+            var filePath = Path.Combine(uploadFolderPath, fileName);
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await docFile.CopyToAsync(stream);
+            }
+            order.FilePath = fileName;
         }
     }
 }

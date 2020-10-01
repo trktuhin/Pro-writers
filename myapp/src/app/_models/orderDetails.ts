@@ -16,4 +16,6 @@ export interface OrderDetails {
     isDeleted?: boolean;
     isPaymentReceived?: boolean;
     orderDate?: Date;
+    filePath?: string;
+    docFile?: Blob;
 }

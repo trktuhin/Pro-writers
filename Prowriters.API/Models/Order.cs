@@ -21,5 +21,6 @@ namespace Prowriters.API.Models
         public bool IsCompleted { get; set; }
         public float TotalDiscount { get; set; }
         public DateTime OrderDate { get; set; }
+        public string FilePath { get; set; }
     }
 }

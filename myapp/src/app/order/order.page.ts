@@ -29,8 +29,18 @@ export class OrderPage implements OnInit {
       customizedCopyrightPage: [false],
       professionalBookDescription: [false],
       plagiarismReport: [false],
-      wordFormatting: [false]
+      wordFormatting: [false],
+      docFile: ['']
     });
+  }
+
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.orderForm.patchValue({
+        docFile: file
+      });
+    }
   }
 
   getTotalPrice() {
@@ -56,7 +66,8 @@ export class OrderPage implements OnInit {
       customizedCopyrightPage: this.orderForm.get('customizedCopyrightPage').value,
       professionalBookDescription: this.orderForm.get('professionalBookDescription').value,
       plagiarismReport: this.orderForm.get('plagiarismReport').value,
-      wordFormatting: this.orderForm.get('wordFormatting').value
+      wordFormatting: this.orderForm.get('wordFormatting').value,
+      docFile: this.orderForm.get('docFile').value
     };
     this.orderService.saveOrder(currentOrder);
     this.router.navigate(['checkout']);
