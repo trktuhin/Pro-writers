@@ -33,11 +33,13 @@ export class OrderService {
     return this.http.get(this.baseUrl + 'PaymentConfirmation/' + id, {headers: tokenHeader});
   }
   getAllOrder(orderParams) {
-    // console.log(tokenHeader);
+    const tknHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
     const paginatedResult: PaginatedResult<OrderDetails[]> = new PaginatedResult<OrderDetails[]>();
     return this.http.post(this.baseUrl + 'GetAllOrders', orderParams, {
       observe: 'response',
-      headers: tokenHeader
+      headers: tknHeader
     }).pipe(
       map((res: any) => {
         paginatedResult.result = res.body;

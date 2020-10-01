@@ -13,7 +13,8 @@ export const environment = {
     }
   },
   baseDomain: 'http://localhost:4200/',
-  baseServer: 'http://localhost:5000/api/'
+  baseServer: 'http://localhost:5000/api/',
+  baseServerRoot: 'http://localhost:5000/files/'
 };
 
 /*

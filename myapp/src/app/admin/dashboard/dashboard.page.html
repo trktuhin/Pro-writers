@@ -61,6 +61,9 @@
             <ion-button (click)="onDeleteOrder(order.id)" color="danger">
               <ion-icon name="trash" slot="icon-only"></ion-icon>
             </ion-button>
+            <ion-button *ngIf="order.filePath" (click)="download(order.filePath)" color="primary">
+              <ion-icon name="download" slot="icon-only"></ion-icon>
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

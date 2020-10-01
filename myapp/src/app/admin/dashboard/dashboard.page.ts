@@ -10,6 +10,9 @@ import { DetailedMessageComponent } from '../detailed-message/detailed-message.c
 import { CouponDetails } from 'src/app/_models/couponDetails';
 import { CouponService } from 'src/app/_services/coupon.service';
 import { AddCouponComponent } from '../add-coupon/add-coupon.component';
+import { environment } from 'src/environments/environment';
+declare var require: any;
+const FileSaver = require('file-saver');
 
 @Component({
   selector: 'app-dashboard',
@@ -30,6 +33,8 @@ export class DashboardPage implements OnInit {
   isCompletedSearch = false;
   messagePersonNameSearch = '';
   messagePersonEmailSearch = '';
+  baseServerRoot = environment.baseServerRoot;
+
   constructor(private orderService: OrderService,
               private loadingCtrl: LoadingController,
               private modalCtrl: ModalController,
@@ -41,11 +46,20 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
   }
 
+  download(filePath: string) {
+    // window.open(this.baseServerRoot + filePath, '_blank');
+    // const link = document.createElement('a');
+    // link.download = 'filename';
+    // link.href = this.baseServerRoot + filePath;
+    // link.click();
+    FileSaver.saveAs(this.baseServerRoot + filePath, filePath);
+  }
+
   ionViewWillEnter() {
     this.loadingCtrl.create({
       spinner: 'bubbles',
       message: 'please wait...'
-    }).then(el =>{
+    }).then(el => {
       el.present();
       this.loadOrders();
       this.loadMessages();
@@ -69,7 +83,7 @@ export class DashboardPage implements OnInit {
     this.loadingCtrl.create({
       spinner: 'bubbles',
       message: 'please wait...'
-    }).then(el =>{
+    }).then(el => {
       el.present();
       this.loadOrders();
       el.dismiss();
@@ -80,7 +94,7 @@ export class DashboardPage implements OnInit {
     this.loadingCtrl.create({
       spinner: 'bubbles',
       message: 'please wait...'
-    }).then(el =>{
+    }).then(el => {
       el.present();
       this.loadMessages();
       el.dismiss();

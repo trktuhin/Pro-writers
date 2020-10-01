@@ -71,6 +71,7 @@ namespace Prowriters.API
             seeder.SeedUsers();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

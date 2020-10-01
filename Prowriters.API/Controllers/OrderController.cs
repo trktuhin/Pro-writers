@@ -92,7 +92,7 @@ namespace Prowriters.API.Controllers
 
         private async Task UploadFile(IFormFile docFile, Order order)
         {
-            var uploadFolderPath = Path.Combine(_env.WebRootPath, "images");
+            var uploadFolderPath = Path.Combine(_env.WebRootPath, "files");
             //creating folder if doesn't exist
             if (!Directory.Exists(uploadFolderPath))
             {
