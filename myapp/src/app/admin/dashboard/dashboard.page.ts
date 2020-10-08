@@ -11,6 +11,7 @@ import { CouponDetails } from 'src/app/_models/couponDetails';
 import { CouponService } from 'src/app/_services/coupon.service';
 import { AddCouponComponent } from '../add-coupon/add-coupon.component';
 import { environment } from 'src/environments/environment';
+import { Meta, Title } from '@angular/platform-browser';
 declare var require: any;
 const FileSaver = require('file-saver');
 
@@ -41,7 +42,9 @@ export class DashboardPage implements OnInit {
               private alertCtrl: AlertController,
               private toastCtrl: ToastController,
               private couponService: CouponService,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private title: Title,
+              private meta: Meta) { }
 
   ngOnInit() {
   }
@@ -56,6 +59,13 @@ export class DashboardPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    this.title.setTitle('Admin Panel | Writogen');
+    this.meta.updateTag({
+      name: 'description',
+      content: `Admin panel for writogen.
+      `
+    });
+
     this.loadingCtrl.create({
       spinner: 'bubbles',
       message: 'please wait...'

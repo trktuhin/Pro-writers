@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderService } from '../_services/order.service';
 import { OrderDetails } from '../_models/orderDetails';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-order',
@@ -11,10 +12,21 @@ import { OrderDetails } from '../_models/orderDetails';
 })
 export class OrderPage implements OnInit {
   orderForm: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router, private orderService: OrderService) { }
+  constructor(private fb: FormBuilder, private router: Router,
+              private orderService: OrderService,
+              private title: Title,
+              private meta: Meta) { }
 
   ngOnInit() {
     this.createOrderForm();
+  }
+  ionViewWillEnter() {
+    this.title.setTitle('Order | Writogen');
+    this.meta.updateTag({
+      name: 'description',
+      content: `Order form to order an e-book with description and additional files
+      `
+    });
   }
 
   createOrderForm() {

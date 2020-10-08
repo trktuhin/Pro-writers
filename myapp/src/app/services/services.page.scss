@@ -1,6 +1,7 @@
+@import '../../mixins';
 .service {
     &__header {
-        background: linear-gradient(rgba(74, 92, 78,.92), rgba(74, 92, 78,.80)),
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
         url(../../assets/service.jpg);
         min-height: 90vh;
         background-size: cover;
@@ -14,6 +15,9 @@
         grid-row-gap: 2rem;
         align-items: start;
         margin-bottom: 3rem;
+        @include respond(tab-port) {
+            min-height: 70vh;
+        }
     }
 }
 .service-icon {
@@ -25,16 +29,25 @@
 }
 .service-box {
     margin: 0 3rem;
-    background-color: #a5a8ad;
+    background-color: #353638;
     padding: 2rem;
     min-height: 25rem;
     transition: all .4s;
+    @include respond(tab-port) {
+        margin-bottom: 2rem;
+    }
+}
+.box-content p{
+    color: white !important;
 }
 .button-holder {
     margin-top: 2rem;
     background-color: #505050;
     padding: 3rem;
     text-align: center;
+    @include respond(tab-port) {
+        margin-bottom: 100px;
+    }
 }
 
 .service-box:hover {
@@ -44,7 +57,8 @@
 .box-header-text {
     text-align: center;
     font-weight: 800;
-    background-image: linear-gradient(to right, #ff003f, #050001);
+    font-size: larger;
+    background-image: linear-gradient(to right, #f54601, #ffffff);
     // display: inline-block;
     -webkit-background-clip: text;
     background-clip: text;

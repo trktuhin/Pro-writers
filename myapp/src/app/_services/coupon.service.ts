@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CouponDetails } from '../_models/couponDetails';
-const tokenHeader = new HttpHeaders({
-  Authorization: 'Bearer ' + localStorage.getItem('token')
-});
+// const tokenHeader = new HttpHeaders({
+//   Authorization: 'Bearer ' + localStorage.getItem('token')
+// });
 
 @Injectable({
   providedIn: 'root'
@@ -18,16 +18,28 @@ export class CouponService {
     return this.http.get(this.baseUrl + 'ApplyCoupon/' + couponValue);
   }
   addCoupon(coupon: CouponDetails) {
-    return this.http.post(this.baseUrl + 'AddCoupon', coupon, {headers: tokenHeader});
+    const tknHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.post(this.baseUrl + 'AddCoupon', coupon, {headers: tknHeader});
   }
   deletecoupon(couponId: number) {
-    return this.http.delete(this.baseUrl + 'deleteCoupon/' + couponId, {headers: tokenHeader});
+    const tknHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.delete(this.baseUrl + 'deleteCoupon/' + couponId, {headers: tknHeader});
   }
   getAllCoupons() {
-    return this.http.get(this.baseUrl + 'GetAllCoupons', {headers: tokenHeader});
+    const tknHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.get(this.baseUrl + 'GetAllCoupons', {headers: tknHeader});
   }
   updateCoupon(coupon: CouponDetails) {
-    return this.http.post(this.baseUrl + 'updateCoupon', coupon, {headers: tokenHeader});
+    const tknHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.post(this.baseUrl + 'updateCoupon', coupon, {headers: tknHeader});
   }
   saveCoupon(coupon: CouponDetails) {
     this.currentCoupon = coupon;

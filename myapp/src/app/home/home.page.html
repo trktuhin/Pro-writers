@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="header">
+  <!-- <div class="header">
     <h2 class="heading-2 color-grey-dark-1">Welcome to the home of Pro-Writers </h2>
     <h3 class="heading-3 color-secondary">Make your own book</h3>
     <h1 class="heading-1 animated-heading">The ultimate personal success !</h1>
@@ -9,6 +9,22 @@
       <img src="../../assets/kindle-logo.jpg" alt="">
       <img src="../../assets/audible-logo.png" alt="">
       <img src="../../assets/amazon-logo.png" alt="">
+    </div>
+  </div> -->
+  <div class="header__new position-relative w-100">
+    <div class="position-absolute text-white d-flex flex-column align-items-start justify-content-center" style="top: 0; right: 0; bottom: 0; left: 0; background-color: rgba(0,0,0,.7);">
+      <div class="container">
+        <div class="col-md-6">
+          <span style="color: #bbb;" class="text-uppercase letter-spacing-1">Get your own book</span>
+          <!-- on small screens remove display-4 -->
+          <h1 class="letter-spacing-3 mb-4 mt-2 display-4 font-weight-bold">The ultimate <span style="color: #9B5DE5;">Personal success!</span></h1>
+          <p  style="color: #bbb;">Get the best outcome from your own ideas and make your dream come true. Let's work together. We are waiting for your order.</p>
+          <div class="mt-5">
+            <!-- hover background-color: white; color: black; -->
+            <a routerLink="/order" class="btn-hover-dark btn px-5 py-3 text-white mt-3 mt-sm-0" style="border-radius: 30px; background-color: #9B5DE5; font-size: 1.6rem;">Order Now</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="cards">

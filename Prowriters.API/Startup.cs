@@ -34,7 +34,7 @@ namespace Prowriters.API
         {
             services.
             AddDbContext<DataContext>
-            (x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            (x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
             services.AddTransient<Seed>();
@@ -71,8 +71,14 @@ namespace Prowriters.API
             seeder.SeedUsers();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
+            app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseMvc();
+            app.UseMvc(routes => {
+                routes.MapSpaFallbackRoute(
+                    name: "spa-fallback",
+                    defaults: new { Controller = "Fallback", Action = "Index"}
+                );
+            });
         }
     }
 }

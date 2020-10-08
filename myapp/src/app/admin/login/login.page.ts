@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Platform, ToastController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/_services/auth.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +18,20 @@ export class LoginPage implements OnInit {
               private router: Router,
               private platform: Platform,
               private toastCtrl: ToastController,
-              private loadingCtrl: LoadingController) { }
+              private loadingCtrl: LoadingController,
+              private title: Title,
+              private meta: Meta) { }
 
   ngOnInit() {
     this. createLoginForm();
+  }
+  ionViewWillEnter() {
+    this.title.setTitle('Admin Login | Writogen');
+    this.meta.updateTag({
+      name: 'description',
+      content: `For admin login page
+      `
+    });
   }
 
   createLoginForm() {

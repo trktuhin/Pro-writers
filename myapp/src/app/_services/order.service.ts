@@ -5,9 +5,9 @@ import { environment } from 'src/environments/environment';
 import { PaginatedResult } from '../_models/Pagination';
 import { map } from 'rxjs/operators';
 
-const tokenHeader = new HttpHeaders({
-  Authorization: 'Bearer ' + localStorage.getItem('token')
-});
+// const tokenHeader = new HttpHeaders({
+//   Authorization: 'Bearer ' + localStorage.getItem('token')
+// });
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class OrderService {
     return this.http.post(this.baseUrl + 'AddOrder', order);
   }
   confirmPayment(id: number) {
-    return this.http.get(this.baseUrl + 'PaymentConfirmation/' + id, {headers: tokenHeader});
+    return this.http.get(this.baseUrl + 'PaymentConfirmation/' + id);
   }
   getAllOrder(orderParams) {
     const tknHeader = new HttpHeaders({
@@ -52,9 +52,15 @@ export class OrderService {
   }
 
   deleteOrder(id: number) {
-    return this.http.delete(this.baseUrl + 'deleteOrder/' + id, {headers: tokenHeader});
+    const tknHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.delete(this.baseUrl + 'deleteOrder/' + id, {headers: tknHeader});
   }
   markAsComplete(id: number) {
-    return this.http.get(this.baseUrl + 'markAsComplete/' + id, {headers: tokenHeader});
+    const tknHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.get(this.baseUrl + 'markAsComplete/' + id, {headers: tknHeader});
   }
 }

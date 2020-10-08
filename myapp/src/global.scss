@@ -120,11 +120,17 @@ body {
     @extend %heading;
     font-size: 4.5rem;
     line-height: 1;
+    @include respond(tab-port) {
+        font-size: 3rem;
+    }
 }
 .heading-2 {
     @extend %heading;
     font-size: 4rem;
     line-height: 1;
+    @include respond(tab-port) {
+        font-size: 2rem;
+    }
 }
 .heading-3 {
     @extend %heading;
@@ -146,5 +152,11 @@ body {
 }
 .color-grey-dark-1{
     color: #8e918f;
+}
+.letter-spacing-1 {
+    letter-spacing: .5rem;
+}
+.letter-spacing-3 {
+    letter-spacing: 1rem;
 }
 

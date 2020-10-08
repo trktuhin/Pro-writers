@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../_services/message.service';
 import { ContactDetails } from '../_models/contactDetails';
 import { ToastController } from '@ionic/angular';
+import { Meta, Title } from '@angular/platform-browser';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-contact',
@@ -13,9 +15,16 @@ export class ContactPage implements OnInit {
   emailAddress = '';
   message = '';
 
-  constructor(private messageService: MessageService, private toastCtrl: ToastController) { }
+  constructor(private messageService: MessageService, private toastCtrl: ToastController,
+              private title: Title,
+              private meta: Meta) { }
 
   ngOnInit() {
+    this.title.setTitle('Contact | Writogen');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'to contact writogen service for ghost writing service to publish e-book on kindle, amazon, audible, acx etc'
+    });
   }
 
   SendMessage() {

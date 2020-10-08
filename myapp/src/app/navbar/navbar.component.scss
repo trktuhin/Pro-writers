@@ -4,15 +4,18 @@
     &__img {
         max-height: 45px;
     }
-    &__icon {
-        position: absolute;
-        right: 0;
+    &__icon-container {
+        position: fixed;
+        right:0;
         top:0;
+    }
+    &__icon {
         height: 6.4rem;
         width: 6.4rem;
         color: white;
         cursor: pointer;
         transition: all .4s;
+        float: right;
     }
     &__icon:hover {
         color: aqua;

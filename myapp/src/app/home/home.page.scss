@@ -1,4 +1,16 @@
 @import '../../mixins';
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+.header__new {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 1.6rem;
+  background: url(../../assets/newHeaderHome.jpg);
+  height: 100vh; 
+  background-size: cover; 
+  background-position: center;
+}
+.btn-hover-dark:hover {
+  background-color: #75038f !important;
+}
 .header {
   background-image: linear-gradient(rgba(74, 92, 78,.92), rgba(74, 92, 78,.90)),
   url(../../assets/photo1.jpg);
@@ -11,6 +23,9 @@
   grid-row-gap: 2rem;
   padding: 8rem;
   justify-content: center;
+  @include respond(tab-port) {
+    min-height: 70vh;
+  }
   &__seenon-text {
     display: grid;
     grid-template-columns: 1fr max-content 3fr;
@@ -48,15 +63,22 @@
   grid-gap: 2rem;
   justify-items: center;
   background-color: #cbd1cc;
+  @include respond(tab-port) {
+    grid-template-columns: 100%;
+  }
 }
 .card {
   justify-self: stretch;
   perspective: 250rem;
   -moz-perspective: 250rem;
+  display: inline-block;
   position: relative;
-  min-height: 70vh; 
+  min-height: 65vh; 
+  @include respond(tab-port) {
+    min-height: 40vh;
+  }
   &__side {
-    min-height: 70vh;
+    min-height: 65vh;
     color: black;
     font-size: 2rem;
     transition: all .8s ease;
@@ -67,6 +89,9 @@
     backface-visibility: hidden;
     border-radius: 5px;
     box-shadow: 0 1.5rem 4rem rgba(0,0,0,.15);
+    @include respond(tab-port) {
+      min-height: 40vh;
+    }
     &-front {
       background-color: #fff;
     }
@@ -79,13 +104,13 @@
         transform: translate(-50%, -50%);
       }
       &-1 {
-        background: linear-gradient(to right bottom,#85adff,#0364ff);
+        background: linear-gradient(to right bottom,#002672,#00040a);
       }
       &-2 {
-        background: linear-gradient(to right bottom,#85ff93,#00a112);
+        background: linear-gradient(to right bottom,#019212,#000200);
       }
       &-3 {
-        background: linear-gradient(to right bottom,#fce25d,#dbb700);
+        background: linear-gradient(to right bottom,#9c8302,#110e00);
       }
     }
   }
@@ -100,13 +125,13 @@
     -webkit-clip-path: polygon(0 0, 50% 10%, 100% 0, 100% 55%, 50% 70%, 0 55%);
     clip-path: polygon(0 0, 50% 10%, 100% 0, 100% 55%, 50% 70%, 0 55%);
     &-1 {
-      background: linear-gradient(to right bottom,#85adff,#0364ff);
+      background: linear-gradient(to right bottom,#0156ff,#000000);
     }
     &-2 {
-      background: linear-gradient(to right bottom,#85ff93,#00a112);
+      background: linear-gradient(to right bottom,#03ff20,#000000);
     }
     &-3 {
-      background: linear-gradient(to right bottom,#fce25d,#dbb700);
+      background: linear-gradient(to right bottom,#ffd502,#000000);
     }
   }
   &__title {
@@ -114,7 +139,7 @@
     top: 8rem;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 2.3rem;
+    font-size: 2rem;
     color: white;
   }
   &__details {
@@ -151,24 +176,28 @@
   width: 75%;
   margin: 4rem auto;
   padding: 6rem;
-  box-shadow: 0 3rem 6rem rgba($color: hsl(22, 98%, 51%), $alpha: .2);
+  box-shadow: 0 3rem 6rem rgba($color: hsl(15, 100%, 2%), $alpha: .4);
   background-color: white;
   border-radius: 3px;
   transform: skewX(-12deg);
   @include respond(tab-port) { // 1rem = 8px
-    width: 90%
+    width: 90%;
+    transform: skewX(0deg);
   }
   &__shape {
     float: left;
     height: 15rem;
     width: 15rem;
-    -webkit-shape-outside: ellipse(50% 45% at 50% 50%);
-    shape-outside: ellipse(50% 45% at 50% 50%);
-    -webkit-clip-path: ellipse(50% 45% at 50% 50%);
-    clip-path: ellipse(50% 45% at 50% 50%);
+    -webkit-shape-outside: ellipse(50% 50% at 50% 50%);
+    shape-outside: ellipse(50% 50% at 50% 50%);
+    -webkit-clip-path: ellipse(50% 50% at 50% 50%);
+    clip-path: ellipse(50% 50% at 50% 50%);
     transform: skewX(12deg);
     @include respond(tab-port) { // 1rem = 8px
       float: none;
+      transform: skewX(0deg);
+      margin-left: 50%;
+      transform: translateX(-50%);
     }
     &-1 {
       background: url(../../assets/people1.jpg);
@@ -183,6 +212,9 @@
   }
   &__text {
     transform: skewX(12deg);
+    @include respond(tab-port) {
+      transform: skewX(0);
+    }
     h3 {
       color: #fc7b03;
     }
@@ -194,6 +226,9 @@
     transform: skewX(12deg);
     position: relative;
     padding-top: 1rem;
+    @include respond(tab-port) {
+      transform: skewX(0);
+    }
     &-container {
       position: absolute;
       right: 0;

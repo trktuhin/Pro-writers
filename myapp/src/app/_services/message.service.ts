@@ -5,9 +5,9 @@ import { ContactDetails } from '../_models/contactDetails';
 import { PaginatedResult } from '../_models/Pagination';
 import { map } from 'rxjs/operators';
 
-const tokenHeader = new HttpHeaders({
-  Authorization: 'Bearer ' + localStorage.getItem('token')
-});
+// const tokenHeader = new HttpHeaders({
+//   Authorization: 'Bearer ' + localStorage.getItem('token')
+// });
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +22,12 @@ export class MessageService {
   }
 
   getAllMessages(messageParams) {
+    const tknHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
     const paginatedResult: PaginatedResult<ContactDetails[]> = new PaginatedResult<ContactDetails[]>();
     return this.http.post(this.baseUrl + 'GetAllMessages', messageParams,
-    {observe: 'response', headers: tokenHeader}).pipe(
+    {observe: 'response', headers: tknHeader}).pipe(
       map((res: any) => {
         paginatedResult.result = res.body;
         if (res.headers.get('Pagination') != null) {
@@ -36,7 +39,10 @@ export class MessageService {
   }
 
   deleteMessage(id: number) {
-    return this.http.delete(this.baseUrl + 'deleteMessage/' + id, {headers: tokenHeader});
+    const tknHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.delete(this.baseUrl + 'deleteMessage/' + id, {headers: tknHeader});
   }
 
 }
