@@ -225,7 +225,7 @@
   &__caption {
     transform: skewX(12deg);
     position: relative;
-    padding-top: 1rem;
+    min-height: 4rem;
     @include respond(tab-port) {
       transform: skewX(0);
     }
@@ -248,4 +248,5 @@
     }
   }
 }
+
  

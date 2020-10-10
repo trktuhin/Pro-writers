@@ -141,8 +141,13 @@ body {
     transition: all .2s;
 }
 .animated-heading:hover {
+    background-color: transparent;
     transform: skewX(15deg) scale(1.1);
-    color: #fc7b03;
+    // color:#00ffe7;
+    background-image:linear-gradient(to right, #008aff, #00ffe7);
+    background-clip: text;
+    color: transparent;
+    // animation: animate 6s infinite ease-in-out;
 }
 .color-secondary {
     color: #e7b205;
@@ -158,5 +163,8 @@ body {
 }
 .letter-spacing-3 {
     letter-spacing: 1rem;
+}
+.trk-bg-blue {
+    background-color: #0156ff;
 }
 
